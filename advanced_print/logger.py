@@ -52,7 +52,10 @@ class LocalLogger:
         # for item in inspect.stack():
         #     pprint(item.filename)
         stack = inspect.stack()
-        filename = stack[2].filename.split("/")[-1]
+
+        filename = stack[2].filename
+        filename = filename.replace("\\", "/")
+        filename = filename.split("/")[-1]
         lineno = stack[2].lineno
         self.reset(filename, lineno)
 
